@@ -27,10 +27,10 @@ local MainAccount = nil
 local passwordAPI = nil
 local autofarm = false
 local autoNeon = false
-local gingerBreadFarm = false
+-- local gingerBreadFarm = false
 local autoFarmButton = nil
 local autoNeonButton = nil
-local gingerButton = nil
+-- local gingerButton = nil
 local cargado = false
 local allloaded = false
 local PetID
@@ -778,26 +778,26 @@ for i, v in pairs(debug.getupvalue(require(ReplicatedStorage.Fsys).load("RouterC
     v.Name = i
 end
 
-gingerButton = AdoptMe:CreateToggle({
-    Name = "Ginger Bread Farm",
-    CurrentValue = false,
-    Flag = "AdoptMe-gingerfarm",
-    Callback = function(state)
-        gingerBreadFarm = state
-        spawn(function()
-            while gingerBreadFarm do
-                wait(10)
-                for i,v in pairs(ReplicatedStorage.Resources.IceSkating.GingerbreadMarkers:GetChildren()) do
-                    if v:IsA("BasePart") then
-                        wait(0.3)
-                        ReplicatedStorage.API:FindFirstChild("WinterEventAPI/PickUpGingerbread"):InvokeServer(v.Name)
-                    end 
-                end 
-                ReplicatedStorage.API:FindFirstChild("WinterEventAPI/RedeemPendingGingerbread"):FireServer()
-            end
-        end)
-    end,
-})
+-- gingerButton = AdoptMe:CreateToggle({
+--     Name = "Ginger Bread Farm",
+--     CurrentValue = false,
+--     Flag = "AdoptMe-gingerfarm",
+--     Callback = function(state)
+--         gingerBreadFarm = state
+--         spawn(function()
+--             while gingerBreadFarm do
+--                 wait(10)
+--                 for i,v in pairs(ReplicatedStorage.Resources.IceSkating.GingerbreadMarkers:GetChildren()) do
+--                     if v:IsA("BasePart") then
+--                         wait(0.3)
+--                         ReplicatedStorage.API:FindFirstChild("WinterEventAPI/PickUpGingerbread"):InvokeServer(v.Name)
+--                     end 
+--                 end 
+--                 ReplicatedStorage.API:FindFirstChild("WinterEventAPI/RedeemPendingGingerbread"):FireServer()
+--             end
+--         end)
+--     end,
+-- })
 
 autoFarmButton = AdoptMe:CreateToggle({
     Name = "Pet AutoFarm",
