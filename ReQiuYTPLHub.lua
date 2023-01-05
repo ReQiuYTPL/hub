@@ -470,9 +470,9 @@ end)
 allloaded = true
 
 if game.PlaceId == 920587237 then
-    loadstring(game:HttpGet(('https://pastebin.com/raw/Y6GdQUGm'),true))() -- AdoptMe
+    loadstring(game:HttpGet(('https://gitfront.io/r/ReQiuYTPL/wFUydaK74uGx/hub/raw/Hub/AdoptMe.lua'),true))() -- AdoptMe
 elseif game.PlaceId == 292439477 then
-    loadstring(game:HttpGet(('https://pastebin.com/raw/L9b2raZh'),true))() -- PhantomForces
+    loadstring(game:HttpGet(('https://gitfront.io/r/ReQiuYTPL/wFUydaK74uGx/hub/raw/Hub/PhantomForces.lua'),true))() -- PhantomForces
 -- elseif game.PlaceId == 6422372837 then
 --     local Snipers = _G.Window:NewTab("Snipers")
 --     local SnipersSection = Snipers:NewSection("Snipers")
