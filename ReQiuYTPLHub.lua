@@ -59,6 +59,7 @@ local allloaded = false
 local antiafk = false
 local limiter = false
 local autoMinimize = false
+local noclip = false
 
 local HttpService = game:GetService("HttpService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -73,7 +74,7 @@ local MainSection = Main:CreateSection("Main")
 local Table = {6152116144, 185655149}
 local Set = setfpscap
 local focused = true
-local cpuButton = Main:CreateToggle({
+Main:CreateToggle({
     Name = "CPU Limiter",
     CurrentValue = false,
     Flag = "limiter",
@@ -93,7 +94,7 @@ local cpuButton = Main:CreateToggle({
         end
     end,
 })
-cpuButton = Main:CreateToggle({
+Main:CreateToggle({
     Name = "Anti AFK",
     CurrentValue = false,
     Flag = "antiafk",
@@ -110,6 +111,23 @@ Main:CreateToggle({
     Callback = function(state)
         if state then
             game:GetService("VirtualInputManager"):SendKeyEvent(true,Enum.KeyCode.RightShift,false,game)
+        end
+    end,
+})
+Main:CreateToggle({
+    Name = "Noclip",
+    CurrentValue = false,
+    Flag = "noclip",
+    Callback = function(state)
+        noclip = state
+        while noclip do
+            Wait(0.1)
+            print("2")
+            for i, v in pairs(Player.Character:GetChildren()) do
+                if v:IsA("BasePart") then
+                    v.CanCollide = false
+                end
+            end
         end
     end,
 })
@@ -138,9 +156,21 @@ Main:CreateSlider({
     Suffix = "Speed",
     CurrentValue = 15,
     Callback = function(Value)
-        print(Value)
         if allloaded then
 		    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
+        end
+    end,
+})
+
+Main:CreateSlider({
+    Name = "JumpPower",
+    Range = {0, 500},
+    Increment = 1,
+    Suffix = "Jump",
+    CurrentValue = 50,
+    Callback = function(Value)
+        if allloaded then
+		    game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
         end
     end,
 })
