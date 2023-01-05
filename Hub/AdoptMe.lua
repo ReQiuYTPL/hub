@@ -886,37 +886,9 @@ autoNeonButton = AdoptMe:CreateToggle({
 local OtherSection = AdoptMe:CreateSection("Other")
 
 AdoptMe:CreateButton({
-    Name = "Buy Wooly Rhino",
+    Name = "Buy Highland Cow",
     Callback = function()
-        ReplicatedStorage.API:FindFirstChild("ShopAPI/BuyItem"):InvokeServer("pets","winter_2022_wooly_rhino",{})
-    end,
-})
-
-AdoptMe:CreateButton({
-    Name = "Buy RAM",
-    Callback = function()
-        ReplicatedStorage.API:FindFirstChild("ShopAPI/BuyItem"):InvokeServer("pets","winter_2022_ram",{})
-    end,
-})
-
-AdoptMe:CreateButton({
-    Name = "Buy Ice Moth",
-    Callback = function()
-        ReplicatedStorage.API:FindFirstChild("ShopAPI/BuyItem"):InvokeServer("pets","winter_2022_ice_moth_dragon",{})
-    end,
-})
-
-AdoptMe:CreateButton({
-    Name = "Buy Steppe Lion",
-    Callback = function()
-        ReplicatedStorage.API:FindFirstChild("ShopAPI/BuyItem"):InvokeServer("pets","winter_2022_steppe_lion",{})
-    end,
-})
-
-AdoptMe:CreateButton({
-    Name = "Buy Irish Elk",
-    Callback = function()
-        ReplicatedStorage.API:FindFirstChild("ShopAPI/BuyItem"):InvokeServer("pets","winter_2022_irish_elk",{})
+        ReplicatedStorage.API:FindFirstChild("ShopAPI/BuyItem"):InvokeServer("pets","scottish_2023_highland_cow",{})
     end,
 })
 
