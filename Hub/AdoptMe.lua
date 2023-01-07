@@ -88,7 +88,7 @@ a = {
                 )
                 SueloTemporal:Destroy()
             end)
-            wait(10)
+            wait(30)
             if not autofarm then
                 break
             end
@@ -179,7 +179,7 @@ a = {
                 )
                 SueloTemporal:Destroy()
             end)
-            wait(10)
+            wait(30)
             if not autofarm then
                 break
             end
@@ -420,7 +420,7 @@ a = {
 spawn(function() 
     while true do
         if autofarm and cargado then
-            wait(1)
+            wait(10)
             local Ailment = Player.PlayerGui.AilmentsMonitorApp.Ailments:FindFirstChildWhichIsA("Frame")
             if Ailment then
                 local Name = Ailment.Name
