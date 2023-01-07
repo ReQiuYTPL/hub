@@ -209,9 +209,12 @@ a = {
         Player.Character.HumanoidRootPart.CFrame = workspace.Interiors:FindFirstChildWhichIsA('Model').PrimaryPart.CFrame:ToWorldSpace(CFrame.new(0, 0, -6))
         wait(1)
         repeat
-            wait(1)
-            GoToStore('PizzaShop')
+            wait(10)
+            -- GoToStore('PizzaShop')
             Player.Character.HumanoidRootPart.CFrame = workspace.Interiors:FindFirstChildWhichIsA('Model').PrimaryPart.CFrame:ToWorldSpace(CFrame.new(0, 0, -6))
+            if not autofarm then
+                break
+            end
         until c.Parent ~= Player.PlayerGui.AilmentsMonitorApp.Ailments
         SueloTemporal:Destroy()
     end,
@@ -229,8 +232,8 @@ a = {
         Player.Character.HumanoidRootPart.CFrame = workspace.Interiors:FindFirstChildWhichIsA('Model').PrimaryPart.CFrame:ToWorldSpace(CFrame.new(0, 0, -6))
         wait(1)
         repeat
-            wait(1)
-            GoToStore("Salon")
+            wait(10)
+            -- GoToStore("Salon")
             Player.Character.HumanoidRootPart.CFrame = workspace.Interiors:FindFirstChildWhichIsA('Model').PrimaryPart.CFrame:ToWorldSpace(CFrame.new(0, 0, -6))
             if not autofarm then
                 break
@@ -259,7 +262,7 @@ a = {
         GoToStore("Nursery")
         wait(1)
         repeat
-            wait(1)
+            wait(10)
             if not autofarm then
                 break
             end
@@ -280,7 +283,7 @@ a = {
         Player.Character.HumanoidRootPart.CFrame = workspace.Interiors.School.BuyIndicators["teachers_apple"].CFrame * CFrame.new(0,5,0)
         wait(1)
         repeat
-            wait(1)
+            wait(10)
             Player.Character.HumanoidRootPart.CFrame = workspace.Interiors.School.BuyIndicators["teachers_apple"].CFrame * CFrame.new(0,5,0)
             if not autofarm then
                 break
@@ -321,7 +324,7 @@ a = {
             Player.Character.HumanoidRootPart.CFrame = CFrame.new(workspace:WaitForChild("StaticMap"):WaitForChild("HotSpring"):WaitForChild("HotSpringOrigin").Position)
             wait(1)
             repeat
-                wait(1)
+                wait(10)
                 Player.Character.HumanoidRootPart.CFrame = CFrame.new(workspace:WaitForChild("StaticMap"):WaitForChild("HotSpring"):WaitForChild("HotSpringOrigin").Position)
                 if not autofarm then
                     break
@@ -362,7 +365,7 @@ a = {
             Player.Character.HumanoidRootPart.CFrame = CFrame.new(workspace:WaitForChild("StaticMap"):WaitForChild("Campsite"):WaitForChild("CampsiteOrigin").Position + Vector3.new(0, 5, 0))
             wait(1)
             repeat
-                wait(1)
+                wait(10)
                 Player.Character.HumanoidRootPart.CFrame = CFrame.new(workspace:WaitForChild("StaticMap"):WaitForChild("Campsite"):WaitForChild("CampsiteOrigin").Position + Vector3.new(0, 5, 0))
                 if not autofarm then
                     break
@@ -404,7 +407,7 @@ a = {
             Player.Character.HumanoidRootPart.CFrame = CFrame.new(workspace:WaitForChild("StaticMap"):WaitForChild("Park"):WaitForChild("BoredAilmentTarget").Position + Vector3.new(0, 5, 0))
             wait(1)
             repeat
-                wait(1)
+                wait(10)
                 Player.Character.HumanoidRootPart.CFrame = CFrame.new(workspace:WaitForChild("StaticMap"):WaitForChild("Park"):WaitForChild("BoredAilmentTarget").Position + Vector3.new(0, 5, 0))
                 if not autofarm then
                     break
@@ -417,7 +420,6 @@ a = {
 spawn(function() 
     while true do
         if autofarm and cargado then
-            --Player.Character:FindFirstChildWhichIsA("Humanoid"):ChangeState("Jumping")
             wait(1)
             local Ailment = Player.PlayerGui.AilmentsMonitorApp.Ailments:FindFirstChildWhichIsA("Frame")
             if Ailment then
@@ -700,7 +702,7 @@ function autofarmtoggle(state)
             end
             cargado = true
             while autofarm do
-                wait(10)
+                wait(30)
                 local Inventory = ClientData.get("inventory") or {}
                 local Pets = require(ReplicatedStorage.ClientModules.Core.ClientData).get_data()[Player.Name].inventory.pets or {}
                 print("Mirando inventario de pets...")
@@ -719,9 +721,8 @@ function autofarmtoggle(state)
         end
     end)
     spawn(function()
-        Wait(5)
         while autofarm do
-            Wait(3)
+            Wait(5)
             for k,v in pairs(game.Players:GetChildren()) do
                 if v.Character and MainAccount and v.Name and game.Players.LocalPlayer.Name and v.Name ~= MainAccount and v.Name ~= game.Players.LocalPlayer.Name then
                     v.Character:Destroy()
@@ -820,7 +821,21 @@ autoNeonButton = AdoptMe:CreateToggle({
                 local tabla = {}
                 local tablaN = {}
                 local hizoAlgunFusion = false
+                local TablaDePets = {}
                 for i, v in pairs(Pets) do
+                    if usernameAPI ~= nil then
+                        if syn then
+                            local pet = {
+                                name = v['id'],
+                                age = v['properties']['age'],
+                                neon = v['properties']['neon'],
+                                mega = v['properties']['mega_neon'],
+                                r = v['properties']['rideable'],
+                                f = v['properties']['flyable'],
+                            }
+                            table.insert(TablaDePets, pet)
+                        end
+                    end
                     if v.properties.age == 6 and not v.properties.neon and not v.properties.mega_neon then
                         if not tabla[v["id"]] then
                             tabla[v["id"]] = {}
@@ -832,6 +847,27 @@ autoNeonButton = AdoptMe:CreateToggle({
                             tablaN[v["id"]] = {}
                         end
                         table.insert(tablaN[v["id"]], v["unique"])
+                    end
+                end
+                if usernameAPI ~= nil then
+                    if syn then
+                        local Response = syn.request({
+                            Url = "http://141.144.230.49/ponerInventariov2",
+                            Body = HttpService:JSONEncode({
+                                ["username"] = Player.name,
+                                ['inv'] = TablaDePets
+                            }),
+                            Method = "POST"
+                        })
+
+                        local respuesta = syn.request({
+                            Url = "http://141.144.230.49/estoyActivo/"..usernameAPI.."/"..Player.name,
+                            Method = "GET"
+                        })
+                        for k,v in pairs(HttpService:JSONDecode(respuesta.Body)) do
+                            ReplicatedStorage.API:FindFirstChild("ShopAPI/BuyItem"):InvokeServer("pets",v,{})
+                            Wait(0.1)
+                        end
                     end
                 end
                 for i,v in pairs(tabla) do
@@ -848,10 +884,6 @@ autoNeonButton = AdoptMe:CreateToggle({
                             pedsParaHacer = {}
                         end
                     end
-                    -- if cuenta == 4 then
-                    --     ReplicatedStorage.API:FindFirstChild("PetAPI/DoNeonFusion"):InvokeServer(pedsParaHacer)
-                    --     hizoAlgunFusion = true
-                    -- end
                     wait(1)
                 end
                 for i,v in pairs(tablaN) do
@@ -868,16 +900,12 @@ autoNeonButton = AdoptMe:CreateToggle({
                             pedsParaHacer = {}
                         end
                     end
-                    -- if cuenta == 4 then
-                    --     ReplicatedStorage.API:FindFirstChild("PetAPI/DoNeonFusion"):InvokeServer(pedsParaHacer)
-                    --     hizoAlgunFusion = true
-                    -- end
                     wait(1)
                 end
                 if hizoAlgunFusion and autofarm then
                     cambiarPet()
                 end
-                wait(15)
+                wait(120)
             end
         end)
     end,
@@ -1012,7 +1040,7 @@ spawn(function()
                 end
             end
         end
-        Wait(5)
+        Wait(30)
     end
 end)
 
@@ -1030,45 +1058,45 @@ spawn(function()
     end
 end)
 
-spawn(function()
-    while true do
-        if usernameAPI ~= nil then
-            if syn then
-                local Pets = require(ReplicatedStorage.ClientModules.Core.ClientData).get_data()[Player.Name].inventory.pets or {}
-                local TablaDePets = {}
-                for k,v in pairs(Pets) do
-                    local pet = {
-                        name = v['id'],
-                        age = v['properties']['age'],
-                        neon = v['properties']['neon'],
-                        mega = v['properties']['mega_neon'],
-                        r = v['properties']['rideable'],
-                        f = v['properties']['flyable'],
-                    }
-                    table.insert(TablaDePets, pet)
-                end
-                local Response = syn.request({
-                    Url = "http://141.144.230.49/ponerInventariov2",
-                    Body = HttpService:JSONEncode({
-                        ["username"] = Player.name,
-                        ['inv'] = TablaDePets
-                    }),
-                    Method = "POST"
-                })
+-- spawn(function()
+--     while true do
+--         if usernameAPI ~= nil then
+--             if syn then
+--                 local Pets = require(ReplicatedStorage.ClientModules.Core.ClientData).get_data()[Player.Name].inventory.pets or {}
+--                 local TablaDePets = {}
+--                 for k,v in pairs(Pets) do
+--                     local pet = {
+--                         name = v['id'],
+--                         age = v['properties']['age'],
+--                         neon = v['properties']['neon'],
+--                         mega = v['properties']['mega_neon'],
+--                         r = v['properties']['rideable'],
+--                         f = v['properties']['flyable'],
+--                     }
+--                     table.insert(TablaDePets, pet)
+--                 end
+--                 local Response = syn.request({
+--                     Url = "http://141.144.230.49/ponerInventariov2",
+--                     Body = HttpService:JSONEncode({
+--                         ["username"] = Player.name,
+--                         ['inv'] = TablaDePets
+--                     }),
+--                     Method = "POST"
+--                 })
 
-                local respuesta = syn.request({
-                    Url = "http://141.144.230.49/estoyActivo/"..usernameAPI.."/"..Player.name,
-                    Method = "GET"
-                })
-                for k,v in pairs(HttpService:JSONDecode(respuesta.Body)) do
-                    ReplicatedStorage.API:FindFirstChild("ShopAPI/BuyItem"):InvokeServer("pets",v,{})
-                    Wait(0.1)
-                end
-            end
-        end
-        Wait(60)
-    end
-end)
+--                 local respuesta = syn.request({
+--                     Url = "http://141.144.230.49/estoyActivo/"..usernameAPI.."/"..Player.name,
+--                     Method = "GET"
+--                 })
+--                 for k,v in pairs(HttpService:JSONDecode(respuesta.Body)) do
+--                     ReplicatedStorage.API:FindFirstChild("ShopAPI/BuyItem"):InvokeServer("pets",v,{})
+--                     Wait(0.1)
+--                 end
+--             end
+--         end
+--         Wait(60)
+--     end
+-- end)
 
 -- spawn(function()
 --     while true do
