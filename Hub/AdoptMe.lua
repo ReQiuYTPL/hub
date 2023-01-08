@@ -805,6 +805,21 @@ autoFarmButton = AdoptMe:CreateToggle({
     CurrentValue = false,
     Flag = "AdoptMe-petfarm",
     Callback = function(state)
+        if state then
+            _G.Library:Notify({
+                Title = "AutoFarm Activated!",
+                Content = "The Pet AutoFarm has been activated",
+                Duration = 2.0,
+                Image = 4483362458,
+            })
+        else
+            _G.Library:Notify({
+                Title = "AutoFarm DeActivated!",
+                Content = "The Pet AutoFarm has been deactivated",
+                Duration = 2.0,
+                Image = 4483362458,
+            })
+        end
         autofarmtoggle(state)
     end,
 })
@@ -815,6 +830,21 @@ autoNeonButton = AdoptMe:CreateToggle({
     Flag = "AdoptMe-autoneon",
     Callback = function(state)
         autoNeon = state
+        if autoNeon then
+            _G.Library:Notify({
+                Title = "Auto Neon Activated!",
+                Content = "The Auto Neon has been activated",
+                Duration = 2.0,
+                Image = 4483362458,
+            })
+        else
+            _G.Library:Notify({
+                Title = "Auto Neon DeActivated!",
+                Content = "The Auto Neon has been deactivated",
+                Duration = 2.0,
+                Image = 4483362458,
+            })
+        end
         spawn(function()
             while autoNeon do
                 local Pets = require(ReplicatedStorage.ClientModules.Core.ClientData).get_data()[Player.Name].inventory.pets or {}
@@ -923,6 +953,12 @@ AdoptMe:CreateButton({
 AdoptMe:CreateButton({
     Name = "Teleport Cave",
     Callback = function()
+        _G.Library:Notify({
+            Title = "Teleporting to the Cave!",
+            Content = "Teleporting...",
+            Duration = 2.0,
+            Image = 4483362458,
+        })
         local SueloTemporal = Instance.new("Part", workspace)
         SueloTemporal.Name = "SueloTemporal"
         SueloTemporal.Size = Vector3.new(100, 0, 100)
@@ -944,6 +980,12 @@ AdoptMe:CreateButton({
 AdoptMe:CreateButton({
     Name = "Hacer Trade License ;)",
     Callback = function()
+        _G.Library:Notify({
+            Title = "Trade License has begin",
+            Content = "Please wait until the license quiz complete",
+            Duration = 2.0,
+            Image = 4483362458,
+        })
         game:GetService("ReplicatedStorage").API:FindFirstChild("SettingsAPI/SetBooleanFlag"):FireServer("has_talked_to_trade_quest_npc", true)
         local SueloTemporal = Instance.new("Part", workspace)
         SueloTemporal.Name = "SueloTemporal"
@@ -973,6 +1015,21 @@ AdoptMe:CreateToggle({
     Name = "Pet MFR",
     CurrentValue = false,
     Callback = function(state)
+        if state then
+            _G.Library:Notify({
+                Title = "Pet MFR Activated!",
+                Content = "The Pet MFR has been activated",
+                Duration = 2.0,
+                Image = 4483362458,
+            })
+        else
+            _G.Library:Notify({
+                Title = "Pet MFR DeActivated!",
+                Content = "The Pet MFR has been deactivated",
+                Duration = 2.0,
+                Image = 4483362458,
+            })
+        end
         local clientData = require(game.ReplicatedStorage.ClientModules.Core.ClientData)
         local playerData = clientData.get_data()[tostring(Player)]
         for i,v in pairs(playerData.inventory.pets) do
