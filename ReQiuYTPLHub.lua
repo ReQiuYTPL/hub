@@ -100,6 +100,21 @@ Main:CreateToggle({
     Flag = "antiafk",
     Callback = function(state)
         if allloaded then
+            if state then
+                _G.Library:Notify({
+                    Title = "Anti AFK Activated!",
+                    Content = "The Anti AFK has been activated",
+                    Duration = 2.0,
+                    Image = 4483362458,
+                })
+            else
+                _G.Library:Notify({
+                    Title = "Anti AFK DeActivated!",
+                    Content = "The Anti AFK has been deactivated",
+                    Duration = 2.0,
+                    Image = 4483362458,
+                })
+            end
 		    antiafk = state
         end
     end,
@@ -110,7 +125,20 @@ Main:CreateToggle({
     Flag = "autohide",
     Callback = function(state)
         if state then
+            _G.Library:Notify({
+                Title = "Auto Hide Menu Activated!",
+                Content = "Auto Hide Menu has been activated",
+                Duration = 2.0,
+                Image = 4483362458,
+            })
             game:GetService("VirtualInputManager"):SendKeyEvent(true,Enum.KeyCode.RightShift,false,game)
+        else
+            _G.Library:Notify({
+                Title = "Auto Hide Menu DeActivated!",
+                Content = "Auto Hide Menu has been deactivated",
+                Duration = 2.0,
+                Image = 4483362458,
+            })
         end
     end,
 })
@@ -120,11 +148,25 @@ Main:CreateToggle({
     Flag = "noclip",
     Callback = function(state)
         noclip = state
+        if noclip then
+            _G.Library:Notify({
+                Title = "Noclip Activated!",
+                Content = "Noclip has been activated",
+                Duration = 2.0,
+                Image = 4483362458,
+            })
+        else
+            _G.Library:Notify({
+                Title = "Noclip DeActivated!",
+                Content = "Noclip has been deactivated",
+                Duration = 2.0,
+                Image = 4483362458,
+            })
+        end
         while noclip do
             Wait(0.1)
-            print("2")
             for i, v in pairs(Player.Character:GetChildren()) do
-                if v:IsA("BasePart") then
+                if v:IsA("BasePart") or v:IsA("Part") then
                     v.CanCollide = false
                 end
             end
@@ -181,6 +223,21 @@ Main:CreateToggle({
     Callback = function(state)
         if allloaded then
             path = state
+            if path then
+                _G.Library:Notify({
+                    Title = "Rainbow Path Activated!",
+                    Content = "Rainbow Path has been activated",
+                    Duration = 2.0,
+                    Image = 4483362458,
+                })
+            else
+                _G.Library:Notify({
+                    Title = "Rainbow Path DeActivated!",
+                    Content = "Rainbow Path has been deactivated",
+                    Duration = 2.0,
+                    Image = 4483362458,
+                })
+            end
             while path do
                 local part = Instance.new("Part")
                 part.Size = Vector3.new(10, 0.5, 10)
