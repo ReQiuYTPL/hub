@@ -23,6 +23,13 @@ PhantomForces:CreateToggle({
     Flag = "PhantomForces-nofall",
     Callback = function(state)
         NoFallDamagePF = state
+        _G.Library:Notify({
+            Title = "No Fall Damage Activated!",
+            -- Content = "The NFD has been activated",
+            Content = "(Currently not working!)",
+            Duration = 2.0,
+            Image = 4483362458,
+        })
     end,
 })
 
@@ -37,6 +44,12 @@ PhantomForces:CreateToggle({
     Callback = function(state)
         ESP = state
         if ESP then
+            _G.Library:Notify({
+                Title = "ESP Activated!",
+                Content = "The ESP has been activated",
+                Duration = 2.0,
+                Image = 4483362458,
+            })
             for k,v in pairs(game.Workspace.Players:GetChildren()) do
                 for k2,v2 in pairs(v:GetChildren()) do
                     if v2:IsA'Model' and v2.Name == 'Player' then
@@ -56,6 +69,12 @@ PhantomForces:CreateToggle({
                 end
             end
         else
+            _G.Library:Notify({
+                Title = "ESP DeActivated!",
+                Content = "The ESP has been deactivated",
+                Duration = 2.0,
+                Image = 4483362458,
+            })
             highlights:Destroy()
             highlights = Instance.new('Folder', game:service'CoreGui')
             highlights.Name = "No Son Chetos"
@@ -75,6 +94,12 @@ PhantomForces:CreateSlider({
         for k,v in pairs(highlights:GetChildren()) do
             v.FillTransparency = color
         end
+        _G.Library:Notify({
+            Title = "Transparency changed!",
+            Content = "The ESP Transparency has been changed!",
+            Duration = 2.0,
+            Image = 4483362458,
+        })
     end,
 })
 
