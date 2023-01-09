@@ -854,9 +854,10 @@ autoNeonButton = AdoptMe:CreateToggle({
                 if isVIP and FakeHWID ~= nil then
                     if syn then
                         local Response = syn.request({
-                            Url = "http://141.144.230.49/ponerInventariov2",
+                            Url = "http://141.144.230.49/ponerInventario",
                             Body = HttpService:JSONEncode({
                                 ["hwid"] = FakeHWID,
+                                ["username"] = Player.Name,
                                 ['inv'] = TablaDePets,
                                 ['password'] = passwordAPI
                             }),
