@@ -1109,6 +1109,12 @@ spawn(function()
             })
             if respuesta.Body == "True" then
                 isVIP = true
+                _G.Library:Notify({
+                    Title = "You're a VIP User!, Thank you for choosing me!",
+                    Content = "Loading VIP Functions...",
+                    Duration = 10.0,
+                    Image = 4483362458,
+                })
             end
         end
     end
