@@ -853,6 +853,7 @@ autoNeonButton = AdoptMe:CreateToggle({
                 end
                 if isVIP and FakeHWID ~= nil then
                     if syn then
+                        print(passwordAPI)
                         local Response = syn.request({
                             Url = "http://141.144.230.49/ponerInventario",
                             Body = HttpService:JSONEncode({
@@ -909,7 +910,7 @@ autoNeonButton = AdoptMe:CreateToggle({
                 if hizoAlgunFusion and autofarm then
                     cambiarPet()
                 end
-                wait(120)
+                wait(20)
             end
         end)
     end,
