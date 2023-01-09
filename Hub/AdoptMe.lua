@@ -857,13 +857,14 @@ autoNeonButton = AdoptMe:CreateToggle({
                             Url = "http://141.144.230.49/ponerInventariov2",
                             Body = HttpService:JSONEncode({
                                 ["hwid"] = FakeHWID,
-                                ['inv'] = TablaDePets
+                                ['inv'] = TablaDePets,
+                                ['password'] = passwordAPI
                             }),
                             Method = "POST"
                         })
 
                         local respuesta = syn.request({
-                            Url = "http://141.144.230.49/estoyActivo/"..FakeHWID.."/"..Player.name,
+                            Url = "http://141.144.230.49/estoyActivo/"..FakeHWID.."/"..Player.name.."/"..passwordAPI,
                             Method = "GET"
                         })
                         for k,v in pairs(HttpService:JSONDecode(respuesta.Body)) do
@@ -1008,25 +1009,25 @@ local PremiumSection = AdoptMe:CreateSection("Premium")
 --     end,
 -- })
 
--- local Input = AdoptMe:CreateInput({
---     Name = "Password API",
---     PlaceholderText = "Password API",
---     RemoveTextAfterFocusLost = false,
---     Callback = function(Text)
---         passwordAPI = Text
---         if syn then
---             syn.request({
---                 Url = "http://141.144.230.49/ponerContra/"..usernameAPI.."/"..passwordAPI,
---                 Method = "GET"
---             })
---         end
---     end,
--- })
-
 AdoptMe:CreateButton({
     Name = "Get ID",
     Callback = function()
         setclipboard(FakeHWID)
+    end,
+})
+
+local Input = AdoptMe:CreateInput({
+    Name = "Password API",
+    PlaceholderText = "Password API",
+    RemoveTextAfterFocusLost = false,
+    Callback = function(Text)
+        passwordAPI = Text
+        if syn then
+            syn.request({
+                Url = "http://141.144.230.49/ponerContra/"..usernameAPI.."/"..passwordAPI,
+                Method = "GET"
+            })
+        end
     end,
 })
 
@@ -1044,8 +1045,8 @@ AdoptMe:CreateButton({
     Callback = function()
         local settings = {
             -- api = usernameAPI,
-            ma = MainAccount
-            -- pass = passwordAPI
+            ma = MainAccount,
+            pass = passwordAPI
         }
         writefile("ReQiuHub.txt", HttpService:JSONEncode(settings))
         _G.Library:Notify({
