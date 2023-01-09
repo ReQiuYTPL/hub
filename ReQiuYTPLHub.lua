@@ -208,8 +208,8 @@ end)
 spawn(function()
     Wait(10)
     local Discord = _G.Window:CreateTab("Discord", 12106760494)
-    local DiscordSection = Main:CreateSection("Discord")
-    AdoptMe:CreateButton({
+    local DiscordSection = Discord:CreateSection("Discord")
+    Discord:CreateButton({
         Name = "Discord",
         Callback = function()
             if request then
