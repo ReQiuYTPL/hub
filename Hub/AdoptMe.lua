@@ -851,7 +851,7 @@ autoNeonButton = AdoptMe:CreateToggle({
                         table.insert(tablaN[v["id"]], v["unique"])
                     end
                 end
-                if isVIP and usernameAPI ~= nil then
+                if isVIP and FakeHWID ~= nil then
                     if syn then
                         local Response = syn.request({
                             Url = "http://141.144.230.49/ponerInventariov2",
@@ -1110,8 +1110,8 @@ spawn(function()
             if respuesta.Body == "True" then
                 isVIP = true
                 _G.Library:Notify({
-                    Title = "You're a VIP User!, Thank you for choosing me!",
-                    Content = "Loading VIP Functions...",
+                    Title = "VIP",
+                    Content = "You're a VIP User!, Thank you for choosing me!, Loading VIP Functions...",
                     Duration = 10.0,
                     Image = 4483362458,
                 })
