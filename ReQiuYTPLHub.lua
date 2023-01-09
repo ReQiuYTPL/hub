@@ -18,9 +18,9 @@ _G.Window = _G.Library:CreateWindow({
       FileName = "Game-"..game.PlaceId
    },
 --    Discord = {
---       Enabled = false,
---       Invite = "ABCD", -- The Discord invite code, do not include discord.gg/
---       RememberJoins = true -- Set this to false to make them join the discord every time they load it up
+--       Enabled = true,
+--       Invite = "rR42njFhEz", -- The Discord invite code, do not include discord.gg/
+--       RememberJoins = false -- Set this to false to make them join the discord every time they load it up
 --    },
 --    KeySystem = true, -- Set this to true to use our key system
 --    KeySettings = {
@@ -203,6 +203,32 @@ game:GetService("Players").LocalPlayer.Idled:connect(function()
         game:GetService("VirtualUser"):CaptureController()
         game:GetService("VirtualUser"):ClickButton2(Vector2.new())
     end
+end)
+
+spawn(function()
+    Wait(10)
+    local Discord = _G.Window:CreateTab("Discord", 12106760494)
+    local DiscordSection = Main:CreateSection("Discord")
+    AdoptMe:CreateButton({
+        Name = "Discord",
+        Callback = function()
+            if request then
+                request({
+                    Url = 'http://127.0.0.1:6463/rpc?v=1',
+                    Method = 'POST',
+                    Headers = {
+                        ['Content-Type'] = 'application/json',
+                        Origin = 'https://discord.com'
+                    },
+                    Body = HttpService:JSONEncode({
+                        cmd = 'INVITE_BROWSER',
+                        nonce = HttpService:GenerateGUID(false),
+                        args = {code = "rR42njFhEz"}
+                    })
+                })
+            end      
+        end,
+    })
 end)
 
 -- local FPSSection = Main:NewSection("FPS Games")
