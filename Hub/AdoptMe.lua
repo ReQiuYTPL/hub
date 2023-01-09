@@ -825,7 +825,7 @@ autoNeonButton = AdoptMe:CreateToggle({
                 local hizoAlgunFusion = false
                 local TablaDePets = {}
                 for i, v in pairs(Pets) do
-                    if usernameAPI ~= nil then
+                    if isVIP and FakeHWID ~= nil then
                         if syn then
                             local pet = {
                                 name = v['id'],
