@@ -1091,14 +1091,13 @@ spawn(function()
         for k,v in pairs(settings) do
             if k == 'ma' then
                 MainAccount = v
-            end
             -- if k == 'ma' then
             --     MainAccount = v
             -- elseif k == "api" then
             --     usernameAPI = v
-            -- elseif k == "pass" then
-            --     passwordAPI = v
-            -- end
+            elseif k == "pass" then
+                passwordAPI = v
+            end
         end
         -- local respuesta = syn.request({
         --     Url = "http://141.144.230.49/esvip/"..usernameAPI,
