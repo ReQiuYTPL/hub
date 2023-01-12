@@ -4,7 +4,7 @@ if not Nexus.IsConnected then Nexus.Connected:Wait() end
 
 Nexus:CreateButton('highland', 'Highland Cow', { 100, 20 }, { 10, 10, 10, 10 })
 Nexus:OnButtonClick('highland', function()
-    ReplicatedStorage.API:FindFirstChild("ShopAPI/BuyItem"):InvokeServer("pets","scottish_2023_highland_cow",{})
+    ReplicatedStorage.API:FindFirstChild("ShopAPI/BuyItem"):InvokeServer("pets","jan_refresh_2023_bloodhound",{})
 end)
 
 Nexus:CreateTextBox('cuenta', 'Cuenta', { 100, 20 }, { 10, 10, 10, 10 })
