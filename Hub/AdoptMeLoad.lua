@@ -1,3 +1,5 @@
+wait(5)
+
 local mod = require(game:GetService("ReplicatedStorage").ClientModules.Core.UIManager.Apps.TradeApp)
 newFunc = hookfunction(mod._get_partner_offer, function(...)
     local args = ...
