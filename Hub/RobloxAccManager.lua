@@ -2,24 +2,24 @@ repeat task.wait() until game:IsLoaded() and Nexus
 
 if not Nexus.IsConnected then Nexus.Connected:Wait() end
 
-Nexus:CreateButton('moonbearbox', 'Moon Bear Box', { 100, 20 }, { 10, 10, 10, 10 })
+Nexus:CreateButton('moonbearbox', 'Feesh', { 100, 20 }, { 10, 10, 10, 10 })
 Nexus:OnButtonClick('moonbearbox', function()
-    game.ReplicatedStorage.API:FindFirstChild("ShopAPI/BuyItem"):InvokeServer("gifts","lny_2023_moon_bear_box",{})
+    game.ReplicatedStorage.API:FindFirstChild("ShopAPI/BuyItem"):InvokeServer("gifts","meme_2023_feesh",{})
 end)
 
-Nexus:CreateButton('moonrabbit', 'Moon Rabbit', { 100, 20 }, { 10, 10, 10, 10 })
+Nexus:CreateButton('moonrabbit', 'Frog Spawn', { 100, 20 }, { 10, 10, 10, 10 })
 Nexus:OnButtonClick('moonrabbit', function()
-    game.ReplicatedStorage.API:FindFirstChild("ShopAPI/BuyItem"):InvokeServer("pets","lny_2023_moon_rabbit",{})
+    game.ReplicatedStorage.API:FindFirstChild("ShopAPI/BuyItem"):InvokeServer("pets","meme_2023_frogspawn",{})
 end)
 
-Nexus:CreateButton('waterrabbit', 'Water Rabbit', { 100, 20 }, { 10, 10, 10, 10 })
+Nexus:CreateButton('waterrabbit', 'Japan Egg', { 100, 20 }, { 10, 10, 10, 10 })
 Nexus:OnButtonClick('waterrabbit', function()
-    game.ReplicatedStorage.API:FindFirstChild("ShopAPI/BuyItem"):InvokeServer("pets","lny_2023_water_rabbit",{})
+    game.ReplicatedStorage.API:FindFirstChild("ShopAPI/BuyItem"):InvokeServer("pets","japan_2022_egg",{})
 end)
 
-Nexus:CreateButton('amamirabbit', 'Amami Rabbit', { 100, 20 }, { 10, 10, 10, 10 })
+Nexus:CreateButton('amamirabbit', 'Cracked Egg', { 100, 20 }, { 10, 10, 10, 10 })
 Nexus:OnButtonClick('amamirabbit', function()
-    game.ReplicatedStorage.API:FindFirstChild("ShopAPI/BuyItem"):InvokeServer("pets","lny_2023_amami_rabbit",{})
+    game.ReplicatedStorage.API:FindFirstChild("ShopAPI/BuyItem"):InvokeServer("pets","cracked_egg",{})
 end)
 
 Nexus:CreateTextBox('cuenta', 'Cuenta', { 100, 20 }, { 10, 10, 10, 10 })
