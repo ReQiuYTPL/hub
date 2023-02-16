@@ -2,14 +2,9 @@ repeat task.wait() until game:IsLoaded() and Nexus
 
 if not Nexus.IsConnected then Nexus.Connected:Wait() end
 
-Nexus:CreateButton('moonbearbox', 'Feesh', { 100, 20 }, { 10, 10, 10, 10 })
+Nexus:CreateButton('moonbearbox', 'Possum', { 100, 20 }, { 10, 10, 10, 10 })
 Nexus:OnButtonClick('moonbearbox', function()
-    game.ReplicatedStorage.API:FindFirstChild("ShopAPI/BuyItem"):InvokeServer("gifts","meme_2023_feesh",{})
-end)
-
-Nexus:CreateButton('moonrabbit', 'Frog Spawn', { 100, 20 }, { 10, 10, 10, 10 })
-Nexus:OnButtonClick('moonrabbit', function()
-    game.ReplicatedStorage.API:FindFirstChild("ShopAPI/BuyItem"):InvokeServer("pets","meme_2023_frogspawn",{})
+    game.ReplicatedStorage.API:FindFirstChild("ShopAPI/BuyItem"):InvokeServer("gifts","camping_2023_possum",{})
 end)
 
 Nexus:CreateButton('waterrabbit', 'Japan Egg', { 100, 20 }, { 10, 10, 10, 10 })
