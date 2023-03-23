@@ -116,6 +116,7 @@ local CoreGui = game:GetService("CoreGui")
 -- Interface Management
 local Rayfield = game:GetObjects("rbxassetid://10804731440")[1]
 
+local Main = Rayfield.Main
 local SearchBar = Main.Searchbar
 local Filler = SearchBar.CanvasGroup.Filler
 
