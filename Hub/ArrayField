@@ -116,7 +116,8 @@ local CoreGui = game:GetService("CoreGui")
 -- Interface Management
 local Rayfield = game:GetObjects("rbxassetid://10804731440")[1]
 
-
+local SearchBar = Main.Searchbar
+local Filler = SearchBar.CanvasGroup.Filler
 
 if gethui then
 	Rayfield.Parent = gethui()
@@ -200,6 +201,66 @@ function ChangeTheme(ThemeName)
 	end
 	
 end
+
+function CloseSearch()
+	Debounce = true
+	TweenService:Create(SearchBar, TweenInfo.new(0.4, Enum.EasingStyle.Quint), {BackgroundTransparency = 1,Size = UDim2.new(0, 460,0, 35)}):Play()
+	TweenService:Create(SearchBar.Icon, TweenInfo.new(0.4, Enum.EasingStyle.Quint), {ImageTransparency = 1}):Play()
+	TweenService:Create(SearchBar.Clear, TweenInfo.new(0.4, Enum.EasingStyle.Quint), {ImageTransparency = 1}):Play()
+	TweenService:Create(SearchBar.UIStroke, TweenInfo.new(0.4, Enum.EasingStyle.Quint), {Transparency = 1}):Play()
+	TweenService:Create(SearchBar.Filter, TweenInfo.new(0.4, Enum.EasingStyle.Quint), {ImageTransparency = 1}):Play()
+	TweenService:Create(SearchBar.Shadow.Image, TweenInfo.new(0.4, Enum.EasingStyle.Quint), {ImageTransparency = 0.1}):Play()
+	TweenService:Create(SearchBar.Input, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {TextTransparency = 1}):Play()
+	delay(.3,function()
+		SearchBar.Input.Visible = false
+	end)
+	wait(0.5)
+	SearchBar.Visible = false
+	Debounce = false
+end
+
+function OpenSearch()
+	Debounce = true
+	SearchBar.Visible = true
+	SearchBar.Input.Visible = true
+	TweenService:Create(SearchBar, TweenInfo.new(0.4, Enum.EasingStyle.Quint), {BackgroundTransparency = 0,Size = UDim2.new(0, 480,0, 40)}):Play()
+	TweenService:Create(SearchBar.Icon, TweenInfo.new(0.4, Enum.EasingStyle.Quint), {ImageTransparency = 0.5}):Play()
+	TweenService:Create(SearchBar.Shadow.Image, TweenInfo.new(0.4, Enum.EasingStyle.Quint), {ImageTransparency = 0.1}):Play()
+	TweenService:Create(SearchBar.UIStroke, TweenInfo.new(0.4, Enum.EasingStyle.Quint), {Transparency = 0}):Play()
+	TweenService:Create(SearchBar.Clear, TweenInfo.new(0.4, Enum.EasingStyle.Quint), {ImageTransparency = .8}):Play()
+	TweenService:Create(SearchBar.Filter, TweenInfo.new(0.4, Enum.EasingStyle.Quint), {ImageTransparency = .8}):Play()
+	TweenService:Create(SearchBar.Input, TweenInfo.new(0.4, Enum.EasingStyle.Quint), {TextTransparency = 0}):Play()
+	wait(0.5)
+	Debounce = false
+end
+SearchBar.Input:GetPropertyChangedSignal('Text'):Connect(function()
+	local InputText=string.upper(SearchBar.Input.Text)
+	for _,page in ipairs(Elements:GetChildren()) do
+		if page ~= 'Template' then
+			for _,Element in pairs(page:GetChildren())do
+				if Element:IsA("Frame") and Element.Name ~= 'Placeholder' and Element.Name ~= 'SectionSpacing' and not Element:GetAttribute('SectionTitle') then
+					if InputText==""or string.find(string.upper(Element.Name),InputText)~=nil then
+						Element.Visible=true
+					else
+						Element.Visible=false
+					end
+				end
+			end
+		end
+	end
+end)
+SearchBar.Clear.MouseButton1Down:Connect(function()
+	Filler.Position = UDim2.new(0.957,0,.5,0)
+	Filler.Size = UDim2.new(0,1,0,1)
+	Filler.BackgroundTransparency = .9
+
+	local goal = {}
+	goal.Size = UDim2.new(0,1000,0,500)
+	goal.BackgroundTransparency = 1
+
+	TweenService:Create(Filler, TweenInfo.new(1,Enum.EasingStyle.Sine,Enum.EasingDirection.Out), goal):Play()
+	SearchBar.Input.Text = ''
+end)
 
 local function AddDraggingFunctionality(DragPoint, Main)
 	pcall(function()
