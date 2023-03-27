@@ -27,6 +27,8 @@ local function GET(Method, Account, ...)
         Url = Url .. '&Password=' .. WebserverSettings.Password
     end
     
+    print(WebserverSettings.Password)
+    
     print(Url)
     
     local Response = Request {
