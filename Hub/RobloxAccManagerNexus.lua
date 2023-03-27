@@ -24,7 +24,7 @@ local function GET(Method, Account, ...)
     end
 
     if WebserverSettings.Password and #WebserverSettings.Password >= 6 then
-        Url = Url .. '&Password=' .. WebserverSettings.Password
+        Url = Url .. '&Password=1234567'
     end
     
     print(WebserverSettings.Password)
