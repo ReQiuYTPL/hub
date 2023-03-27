@@ -22,19 +22,13 @@ local function GET(Method, Account, ...)
         
         Url = Url .. '&' .. Parameter
     end
+    
     Url = Url .. '&Password=1234567'
-    
-    print(WebserverSettings.Password)
-    
-    print(Url)
     
     local Response = Request {
         Method = 'GET',
         Url = Url
     }
-    
-    print(Response.StatusCode)
-    print(Response.Body)
 
     if Response.StatusCode ~= 200 then return false end
 
