@@ -139,11 +139,11 @@ local ParentObject = function(Gui)
 	-- 		syn.protect_gui(Gui)
 	-- 		Gui.Parent = CoreGui
 	-- 	elseif CoreGui then
-	-- 		Gui.Parent = CoreGui
+			Gui.Parent = CoreGui
 	-- 	end
 	-- end)
 	-- if not success and failure then
-		Gui.Parent = LocalPlayer:FindFirstChildWhichIsA("PlayerGui")
+		--Gui.Parent = LocalPlayer:FindFirstChildWhichIsA("PlayerGui")
 	-- end
 	_G.LastRayField = ArrayField
 end
