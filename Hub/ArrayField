@@ -3404,7 +3404,7 @@ Topbar.Type.MouseButton1Click:Connect(function()
 	end
 end)
 
-function hideUnHide()
+_G.hideUnHide()
 	if Debounce then return end
 	if Hidden then
 		Hidden = false
