@@ -3403,6 +3403,20 @@ Topbar.Type.MouseButton1Click:Connect(function()
 		CloseSideBar()
 	end
 end)
+
+function hideUnHide()
+	if Debounce then return end
+	if Hidden then
+		Hidden = false
+		Minimised = false
+		Unhide()
+	else
+		if not SearchHided then SearchHided = true spawn(CloseSearch)  end
+		Hidden = true
+		Hide()
+	end
+end
+
 Topbar.Hide.MouseButton1Click:Connect(function()
 	if Debounce then return end
 	if Hidden then
