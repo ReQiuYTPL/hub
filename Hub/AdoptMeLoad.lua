@@ -1,4 +1,4 @@
-loadstring(game:HttpGet(('https://gitfront.io/r/ReQiuYTPL/wFUydaK74uGx/hub/raw/Hub/AdoptMe.lua'),true))()
+loadstring(game:HttpGet(('https://raw.githubusercontent.com/ReQiuYTPL/hub/main/Hub/AdoptMe.lua'),true))()
 
 --while not _G.LoadedPrices do wait(1) print(_G.LoadedPrices) end
 
